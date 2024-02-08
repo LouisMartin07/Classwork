@@ -76,38 +76,36 @@ class CarManager:
 
 #======== Code essential to the Main Loop =======#
         
-    option_list = [
-        {"option": 1, "description": "Add a car", "function": add_a_car},
-        {"option": 2, "description": "View all cars", "function": view_cars},
-        {"option": 3, "description": "View total number of cars", "function": view_total_num_of_cars},
-        {"option": 4, "description": "See a car's details", "function": print_car_by_id},
-        {"option": 5, "description": "Service a car", "function": set_car_service},
-        {"option": 6, "description": "Update mileage", "function": set_mileage},
-        {"option": 7, "description": "Quit", "function": goodbye}
-    ]     
-    
-       
-#you have to utilize this as a class method or it wont properly understand what the functions are you are calling in the option_list
+    #you have to utilize this as a class method or it wont properly understand what the functions are you are calling in the option_list
     @classmethod
     def handle_option(cls, input_number):
         for option in cls.option_list:
             if option["option"] == input_number:
-                # Call the function directly if it's a normal class method or static method
-                if callable(option["function"]):
-                    # Special handling for option 7 (Quit), or any function that doesn't need extra arguments
-                    if input_number == 7:
-                        option["function"]()  # Call the goodbye function without needing 'cls'
-                    else:
-                        option["function"](cls)  # Assuming other functions are class methods and require 'cls'
-                return  # Exit the method after handling the valid option
+                function = option["function"]
+                # Check if the function requires the class ('cls') as an argument
+                if input_number < 6 or input_number == 7:  # the exception is 5 and 6 which require cls since they are isntance methods
+                    function()
+                else:
+                    function(self)
+                return
         else:
             print("Invalid option selection.")
+
+CarManager.option_list = [
+    {"option": 1, "description": "Add a car", "function": CarManager.add_a_car},
+    {"option": 2, "description": "View all cars", "function": CarManager.view_cars},
+    {"option": 3, "description": "View total number of cars", "function": CarManager.view_total_num_of_cars},
+    {"option": 4, "description": "See a car's details", "function": CarManager.print_car_by_id},
+    {"option": 5, "description": "Service a car", "function": CarManager.set_car_service},
+    {"option": 6, "description": "Update mileage", "function": CarManager.set_mileage},
+    {"option": 7, "description": "Quit", "function": CarManager.goodbye}
+]     
     
-#======== Main Loop =======#
-        
-    print(f"----  WELCOME  ----\n Below is a list of our options")
-    for option in option_list:
-        print(f'{option["option"]}: {option["description"]}')
+#======== Initiate Main Loop =======#
+
+print(f"----  WELCOME  ----\n Below is a list of our options")
+for option in CarManager.option_list:
+    print(f'{option["option"]}: {option["description"]}')
 
 user_input = int(input("Enter an option number: "))
 CarManager.handle_option(user_input)
