@@ -55,7 +55,6 @@ class CarManager:
                     print("Services: " + ", ".join(car.services))
                 else:
                     print("Services: None")
-                break
         else:  # This else belongs to the for loop, executed if the loop completes normally (no break)
             print(f"No car found with ID {car_id}.")
     
@@ -79,17 +78,25 @@ class CarManager:
     #you have to utilize this as a class method or it wont properly understand what the functions are you are calling in the option_list
     @classmethod
     def handle_option(cls, input_number):
-        for option in cls.option_list:
-            if option["option"] == input_number:
-                function = option["function"]
-                # Check if the function requires the class ('cls') as an argument
-                if input_number < 6 or input_number == 7:  # the exception is 5 and 6 which require cls since they are isntance methods
+        on = True
+        while on:
+            for option in cls.option_list:
+                if option["option"] == input_number:
+                    function = option["function"]
+                    # Check if the function requires the class ('cls') as an argument
+                    if input_number < 6:  # the exception is 5 and 6 which require cls since they are isntance methods
+                        function()
+                    else:
+                        car_id = int(input("Please specify a car ID "))
+                        car = CarManager.all_cars[car_id]
+                        function(car)
+                        
+                if input_number == 7:
                     function()
-                else:
-                    function(self)
-                return
-        else:
-            print("Invalid option selection.")
+                    on = False
+            else:
+                print("Invalid option selection.")
+        
 
 CarManager.option_list = [
     {"option": 1, "description": "Add a car", "function": CarManager.add_a_car},
@@ -100,7 +107,8 @@ CarManager.option_list = [
     {"option": 6, "description": "Update mileage", "function": CarManager.set_mileage},
     {"option": 7, "description": "Quit", "function": CarManager.goodbye}
 ]     
-    
+
+Louis_car = CarManager("ford","Fusion","2012",100,["oil change"])   
 #======== Initiate Main Loop =======#
 
 print(f"----  WELCOME  ----\n Below is a list of our options")
@@ -109,4 +117,3 @@ for option in CarManager.option_list:
 
 user_input = int(input("Enter an option number: "))
 CarManager.handle_option(user_input)
-        
