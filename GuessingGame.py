@@ -1,4 +1,4 @@
-#import random
+ #import random
 
 class GuessingGame:
 
@@ -19,7 +19,7 @@ class GuessingGame:
        return self.is_solved
 
 game = GuessingGame(10)
-
+#=============Test Suite #1==========#
 print(game.solved())   # => False
 
 print(game.guess(5))  # => 'low'
@@ -29,8 +29,7 @@ print(game.solved())   # => False
 print(game.guess(10)) # => 'correct'
 print(game.solved())   # => True
 
-
-
+#=============Test Suite #2==========#
 # ----- main.py -----
 # game = GuessingGame(random.randint(1,100))
 # last_guess  = None
