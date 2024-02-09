@@ -84,7 +84,7 @@ class CarManager:
     def handle_option(cls, input_number):
         terminal_on = True
         while terminal_on:
-            for option in cls.option_list:
+            for option in cls.option_list: #add a dictionary instead of looping through
                 if option["option"] == input_number:
                     function = option["function"]
                     # Check if the function requires the class ('cls') as an argument
@@ -110,6 +110,7 @@ class CarManager:
                 user_input = int(input("Please enter another option number: "))
                 CarManager.handle_option(user_input)
 
+# The beans and potatoes 
 CarManager.option_list = [
     {"option": 1, "description": "Add a car", "function": CarManager.add_a_car},
     {"option": 2, "description": "View all cars", "function": CarManager.view_cars},
@@ -120,9 +121,9 @@ CarManager.option_list = [
     {"option": 7, "description": "Quit", "function": CarManager.goodbye}
 ]     
 #======== Sample Object ============#
-Erricks_car = CarManager("Mobile","Home","1997",1000000000,["Added Spinners"])   
-#======== Initiate Main Loop =======#
+Erricks_car = CarManager("Mobile","Home","1995",1000000000,["Added Spinners"])   
 
+#======== Initiate Main Loop =======#
 print(f"----  WELCOME  ----\n Below is a list of our options")
 for option in CarManager.option_list:
     print(f'{option["option"]}: {option["description"]}')
