@@ -28,7 +28,7 @@ def binary_search_unsorted(arr, target):
 # Scenario 1 Test
 #sorted_arr = [7,10,15,18,22,30,42]
 unsorted_list = [42, 15, 7, 30, 22, 10, 18]
-target_1 = 30
+target_1 = 18
 result_linear_search_1 = linear_search_unsorted(unsorted_list, target_1)
 result_binary_search_1 = binary_search_unsorted(sorted(unsorted_list), target_1)
 print(f"Scenario 1 (Linear Search): Target {target_1} found at index {result_linear_search_1[0]} in {result_linear_search_1[1]} steps.")
