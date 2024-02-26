@@ -42,5 +42,4 @@ def get_students():
     ]
     return jsonify(student_list)        
 
-
 app.run(debug=True)
