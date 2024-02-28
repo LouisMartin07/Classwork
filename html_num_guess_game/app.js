@@ -7,6 +7,7 @@ function checkGuess() {
 
     if (userGuess === randomNumber) {
         showMessage('Congratulations! You guessed the correct number.');
+        
     } else {
         guessedNumbers.push(userGuess);
 
