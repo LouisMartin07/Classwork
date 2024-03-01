@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+.box {
+    display: inline-block;
+    border-width: 2px, solid black;  
+    margin: 10px;
+    height: 100px;
+    width: 100 px;
+    font-size: 18px;
+    padding: 10px
+}
+
+.container {
+    font-size: 0px;
+}
+
+.float-box {
+    float:left
+}
+
+.text{
+    clear:left;
+}
+
+.container2 {
+    height:100px;
+    overflow: auto
+}
+
+a:link {
+    color: green; 
+}
+
+a:visited {
+    color: yellow
+}
+
+input:invalid {
+    color: red
+}
