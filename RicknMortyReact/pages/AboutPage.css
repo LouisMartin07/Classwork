@@ -1,0 +1,47 @@
+#aboutpgcontainer {
+    background-image: url(../src/imgs/rick-and-morty-uhdpaper.com-4K-5.147.jpg);
+    min-height: 100vh;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+@keyframes wave-animation {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(10px);
+    }
+  }
+  
+  .wavy-text {
+    color: purple;
+    display: inline-block;
+    /* Break the word into individual letters for animation */
+    span {
+      display: inline-block;
+      animation: wave-animation 4s infinite;
+      animation-delay: calc(0.1s * var(--i));
+    }
+  }
+  
+  @keyframes color-change {
+    0% { color: red; }
+    25% { color: blue; }
+    50% { color: green; }
+    75% { color: yellow; }
+    100% { color: red; }
+  }
+  
+  .wavy-text span {
+    display: inline-block;
+    animation: wave-animation 4s infinite, color-change 5s infinite;
+    animation-delay: calc(0.1s * var(--i));
+}

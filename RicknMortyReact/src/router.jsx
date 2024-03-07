@@ -1,18 +1,33 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom"
 import App from "./App";
-import HomePage from "../pages/HomePage";
+import AboutPage from "../pages/AboutPage";
+import CharactersPage from "../pages/CharactersPage";
+import EpisodesPage from "../pages/EpisodesPage";
+import LocationsPage from "../pages/LocationsPage";
 
-const router = createBrowserRouter ([
+const router = createBrowserRouter([
     {
-        path:"/",
-        element: <App />,
+        path: "/",
+        element: <App/>,
         children: [
             {
                 index: true,
-                element: <HomePage />,
+                element: <AboutPage/>
+            },
+            {
+                path: "/Characters/",
+                element: <CharactersPage/>
+            },
+            {
+                path: "/Episodes/",
+                element: <EpisodesPage/>
+            },
+            {
+                path: "/Locations/",
+                element: <LocationsPage/>
             },
         ],
-    },
+    }
 ]);
 
 export default router;
