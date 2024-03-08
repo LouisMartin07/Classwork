@@ -24,7 +24,7 @@ const MyNavbar = () => {
               <Link to="/Locations/" className="text-decoration-none text-black">Locations</Link>
             </Col>
             <Col>
-              <button className="rick-morty-button" onClick={() => console.log("Button clicked")}></button>
+              <Link to="/Favorites/" className="text-decoration-none text-black">Favorites</Link>
             </Col>
           </Row>
         </Container>

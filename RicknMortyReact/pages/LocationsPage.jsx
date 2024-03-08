@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 
@@ -24,7 +24,10 @@ const LocationsPage = () => {
               <Card.Text>
                 Dimension: {location.dimension}
               </Card.Text>
-              <Button variant="primary">Learn More</Button>
+              <div className="d-flex justify-content-between"> 
+              <Button variant="primary" onClick={() => detailsButtonClick(character.id)}>Details</Button>
+              <Button variant="primary" onClick={() => favoritesButtonClick(character.id)}>Add to favorites</Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>

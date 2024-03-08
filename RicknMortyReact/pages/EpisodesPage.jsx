@@ -24,7 +24,10 @@ const EpisodesPage = () => {
               <Card.Text>
                 Air date: {episode.air_date}
               </Card.Text>
-              <Button variant="primary">Learn More</Button>
+              <div className="d-flex justify-content-between"> 
+              <Button variant="primary" onClick={() => detailsButtonClick(character.id)}>Details</Button>
+              <Button variant="primary" onClick={() => favoritesButtonClick(character.id)}>Add to favorites</Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>

@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Card, Button, Row, Col } from 'react-bootstrap'; 
+import { Card, Button, Row, Col } from 'react-bootstrap';
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState([]);
+  const navigate = useNavigate()
+  const { addToFavorites } = useOutletContext();
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -14,9 +17,9 @@ const CharactersPage = () => {
   }, []);
 
   return (
-    <Row xs={1} md={4} className="g-4"> {/* adjust "md" for the desired number of cards per row */}
+    <Row xs={1} md={4} className="g-4">
       {characters.map((character) => (
-        <Col key={character.id}> 
+        <Col key={character.id}>
           <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={character.image} />
             <Card.Body>
@@ -24,7 +27,10 @@ const CharactersPage = () => {
               <Card.Text>
                 Status: {character.status}
               </Card.Text>
-              <Button variant="primary">Learn More</Button>
+              <div className="d-flex justify-content-between">
+                <Button variant="primary" onClick={() => navigate(`/characters/${character.id}`)}>Details</Button>
+                <Button variant="success" onClick={() => addToFavorites(character)}>Add to favorites</Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>
@@ -32,6 +38,6 @@ const CharactersPage = () => {
     </Row>
   );
 };
- 
+
 export default CharactersPage;
 
