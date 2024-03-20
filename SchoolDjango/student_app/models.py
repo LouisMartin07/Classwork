@@ -6,7 +6,7 @@ class Student(models.Model):
     name = models.CharField(max_length=255, blank=False, unique=False, validators=[validate_name_format])
     student_email = models.EmailField(unique=True, blank=False, validators = [validate_school_email])
     personal_email = models.EmailField(unique=True, blank=True, null=True)
-    locker_number = models.IntegerField(blank=False, unique=True, default=110, validators =[v.MinValueValidator(1), v.MaxValueValidator(2)])
+    locker_number = models.IntegerField(blank=False, unique=True, default=110, validators =[v.MinValueValidator(1), v.MaxValueValidator(200)])
     locker_combination = models.CharField(max_length=10, blank=False, unique=False, default="12-12-12", validators = [validate_combination_format])
     good_student = models.BooleanField(default=True)
 
