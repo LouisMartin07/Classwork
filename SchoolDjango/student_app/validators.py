@@ -12,3 +12,4 @@ def validate_school_email(value):
 def validate_combination_format(value):
     if not re.match(r'^\d{2}-\d{2}-\d{2}$', value):
         raise ValidationError('Combination must be in the format "12-12-12"')
+    
