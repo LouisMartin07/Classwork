@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .serializers import Subject, SubjectSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 # Create your views here.
 
 class All_subjects(APIView):
@@ -13,7 +14,7 @@ class All_subjects(APIView):
 
 class A_subject(APIView):
 
-     def get(self, request, id): 
+    def get(self, request, id): 
         pokemon = None
         if type(id) == int: 
             pokemon = Subject.objects.get(id = id)
@@ -22,3 +23,10 @@ class A_subject(APIView):
         return Response(SubjectSerializer(pokemon).data) 
 
 
+    def put(self, request, pk):
+        subject = Subject.objects.get(pk=pk)
+        serializer = SubjectSerializer(subject, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
